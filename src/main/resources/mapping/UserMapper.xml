@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.UserMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.entity.User">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="userName" jdbcType="VARCHAR" property="userName"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="role" jdbcType="VARCHAR" property="role"/>
+        <result column="token" jdbcType="VARCHAR" property="token"/>
+        <result column="avatar" jdbcType="VARCHAR" property="avatar"/>
+        <result column="description" jdbcType="VARCHAR" property="description"/>
+    </resultMap>
+
+    <select id="Login" resultType="com.example.entity.User">
+        select * from user where userName = #{userName} and password = #{password};
+    </select>
+
+    <select id="SaveMsg" resultType="com.example.entity.User">
+        insert into user (userName,password,role,avatar,description) values(#{userName},#{password},#{role},#{avatar},#{description});
+    </select>
+
+    <select id="SelectAllUser" resultType="com.example.entity.User">
+        select * from user
+    </select>
+
+    <select id="SaveToken" resultType="com.example.entity.User">
+        update user set token = #{token} WHERE userName = #{userName};
+    </select>
+
+</mapper>

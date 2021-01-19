@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.DescMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.entity.Desc">
+        <result column="descId" jdbcType="INTEGER" property="descId"/>
+        <result column="myId" jdbcType="INTEGER" property="myId"/>
+        <result column="myMsg" jdbcType="VARCHAR" property="myMsg"/>
+        <result column="youId" jdbcType="INTEGER" property="youId"/>
+        <result column="youMsg" jdbcType="VARCHAR" property="youMsg"/>
+        <result column="date" jdbcType="VARCHAR" property="date"/>
+        <result column="description" jdbcType="VARCHAR" property="description"/>
+    </resultMap>
+
+    <select id="GetMsgs" resultType="com.example.entity.Desc">
+        select * from `desc` where myId = #{myId} and youId = #{youId};
+    </select>
+
+    <select id="GetMsgsInitDesc" resultType="com.example.entity.Desc">
+        select * from `desc` where myId = #{myId};
+    </select>
+
+    <select id="SaveDesc" resultType="com.example.entity.Desc">
+      insert into `desc` (myId,myMsg,youId,youMsg,date,description) values(#{myId},#{myMsg},#{youId},#{youMsg},#{date},#{description});
+    </select>
+
+
+</mapper>
